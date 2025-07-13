@@ -261,33 +261,57 @@ const Index = () => {
             Каталог запчастей
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
             {filteredParts.map((part) => (
               <Card
                 key={part.id}
-                className="hover:shadow-lg transition-shadow duration-300 hover:scale-105"
+                className="hover:shadow-md transition-all duration-300 border-l-4 border-l-blue-600"
               >
-                <CardHeader className="pb-4">
-                  <div className="aspect-square bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                    <Icon name="Settings" size={48} className="text-gray-400" />
-                  </div>
-                  <CardTitle className="text-lg">{part.name}</CardTitle>
-                  <CardDescription>Артикул: {part.article}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-2xl font-bold text-blue-600">
-                        {part.price} ₽
-                      </p>
-                      <Badge variant="secondary">{part.category}</Badge>
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-4">
+                    {/* Маленькая картинка */}
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon
+                        name="Settings"
+                        size={24}
+                        className="text-gray-400"
+                      />
                     </div>
-                    <Button
-                      onClick={() => addToCart(part)}
-                      className="hover:scale-105 transition-transform"
-                    >
-                      <Icon name="Plus" size={16} className="mr-2" />В корзину
-                    </Button>
+
+                    {/* Информация о товаре */}
+                    <div className="flex-grow">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-semibold text-lg text-gray-900">
+                            {part.name}
+                          </h3>
+                          <p className="text-sm text-gray-500 mb-1">
+                            Артикул: {part.article}
+                          </p>
+                          <Badge variant="outline" className="text-xs">
+                            {part.category}
+                          </Badge>
+                        </div>
+
+                        {/* Цена и кнопка */}
+                        <div className="text-right flex items-center gap-4">
+                          <div>
+                            <p className="text-2xl font-bold text-blue-600">
+                              {part.price} ₽
+                            </p>
+                            <p className="text-sm text-gray-500">В наличии</p>
+                          </div>
+                          <Button
+                            onClick={() => addToCart(part)}
+                            size="sm"
+                            className="hover:scale-105 transition-transform"
+                          >
+                            <Icon name="Plus" size={16} className="mr-1" />В
+                            корзину
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
